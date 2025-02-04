@@ -35,7 +35,6 @@
       color: #7a7a7a
     }
 
-
     .blog:hover {
       color: #ffbd2f;
     }
@@ -54,6 +53,9 @@
 
     .behance:hover {
       color: #053eff;
+       }
+    .artsation:hover {
+      color: #13aff0;
     }
 
     .social {
@@ -94,6 +96,12 @@
         <span class="icon reddit"><i class="fa-brands fa-behance"></i>
       </div>
       <!-- End behance Icon -->
+      
+      <!-- Start artstation Icon -->
+      <div id="artstation" onclick="navigate(this.id)" class="social">
+        <span class="icon reddit"><i class="fa-brands fa-artstation"></i>
+      </div>
+      <!-- End artstaion Icon -->
  
     </div>
 
@@ -103,21 +111,24 @@
         //if you want the URL to open in the same window use '_parent'  instead of '_blank'
 
         if (id === "blog")
-          window.open("https://blog.shorouk.dev", '_blank').focus(); //Add the url to your blog
+          window.open("https://blog.shorouk.dev", '_parent').focus(); //Add the url to your blog
 
         else if (id === "email") {
-          window.open("mailto:rkc404@gmail.com", '_blank').focus(); //Add your email after "mailto:""
+          window.open("mailto:rkc404@gmail.com", '_parent').focus(); //Add your email after "mailto:""
         }
 
         }
         else if (id === "instagram") {
-          window.open("https://www.instagram.com/kae.zee", '_blank').focus(); //Add the url to your instagram account
+          window.open("https://www.instagram.com/kae.zee", '_parent').focus(); //Add the url to your instagram account
         }
         else if (id === "linkedin") {
-          window.open("https://www.linkedin.com/in/krishnachandran-r/", '_blank').focus(); //Add the url to your linkedin account
+          window.open("https://www.linkedin.com/in/krishnachandran-r/", '_parent').focus(); //Add the url to your linkedin account
         }
       else if (id === "behance") {
-          window.open("https:https://www.behance.net/kaezee", '_blank').focus(); //Add the url to your behance account
+          window.open("https:https://www.behance.net/kaezee", '_parent').focus(); //Add the url to your behance account
+        }
+      else if (id === "artstation") {
+          window.open("https://www.artstation.com/kaezee", '_parent').focus(); //Add the url to your artstation account
         }
       }
 
