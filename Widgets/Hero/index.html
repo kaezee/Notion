@@ -12,21 +12,29 @@
         }
 
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            margin: 0;
+            padding: 0;
             background: #000000;
-            min-height: 100vh;
+            width: 100%;
+            height: 100%;
             overflow: hidden;
         }
 
         .container {
-            width: 1500px;
-            height: 640px;
+            width: 1100px;
+            height: 480px;
             position: relative;
-            border-radius: 24px;
             overflow: hidden;
             background: rgb(15, 10, 40);
+            margin: 0 auto;
+            aspect-ratio: 1100/480;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            aspect-ratio: 1100/480;
         }
 
         #aurora {
@@ -43,21 +51,19 @@
             z-index: 2;
             text-align: center;
             color: white;
-            padding: 2rem;
+            padding-top: 150px; /* Fixed distance from top */
             height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: block; /* Changed from flex */
         }
 
         .text-container {
             position: relative;
-            padding-top: 80px;
+            padding-top: 60px;
         }
 
         .hero h1 {
             font-family: 'Times New Roman', serif;
-            font-size: 4rem;
+            font-size: 3.5rem;
             line-height: 1.3;
             font-weight: normal;
             text-shadow: 0 2px 4px rgba(0,0,0,0.5);
@@ -65,11 +71,11 @@
 
         .star-icon {
             position: absolute;
-            top: 0;
+            top: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
         }
 
         .stars {
@@ -118,97 +124,96 @@
     </div>
 
     <script>
-        const canvas = document.getElementById('aurora');
-        const ctx = canvas.getContext('2d');
-        let width, height;
-        let particles = [];
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('aurora');
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            let particles = [];
 
-        function resizeCanvas() {
-            const container = document.querySelector('.container');
-            width = container.offsetWidth;
-            height = container.offsetHeight;
-            canvas.width = width;
-            canvas.height = height;
-            
-            // Recreate particles when canvas is resized
-            createParticles();
-        }
-
-        class Particle {
-            constructor() {
-                this.reset();
+            function resizeCanvas() {
+                const container = document.querySelector('.container');
+                width = container.offsetWidth;
+                height = container.offsetHeight;
+                canvas.width = width;
+                canvas.height = height;
+                createParticles();
             }
 
-            reset() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * 0.2;
-                this.vy = (Math.random() - 0.5) * 0.2;
-                this.alpha = Math.random() * 0.5 + 0.2;
-                this.color = this.getRandomColor();
-            }
-
-            getRandomColor() {
-                const colors = [
-                    [64, 185, 179],  // Teal
-                    [32, 90, 165],   // Blue
-                    [76, 145, 170],  // Light blue
-                    [45, 65, 95]     // Dark blue
-                ];
-                return colors[Math.floor(Math.random() * colors.length)];
-            }
-
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-
-                if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
+            class Particle {
+                constructor() {
                     this.reset();
                 }
 
-                this.alpha += (Math.random() - 0.5) * 0.01;
-                this.alpha = Math.max(0.1, Math.min(0.5, this.alpha));
+                reset() {
+                    this.x = Math.random() * width;
+                    this.y = Math.random() * height;
+                    this.vx = (Math.random() - 0.5) * 0.2;
+                    this.vy = (Math.random() - 0.5) * 0.2;
+                    this.alpha = Math.random() * 0.5 + 0.2;
+                    this.color = this.getRandomColor();
+                }
+
+                getRandomColor() {
+                    const colors = [
+                        [64, 185, 179],  // Teal
+                        [32, 90, 165],   // Blue
+                        [76, 145, 170],  // Light blue
+                        [45, 65, 95]     // Dark blue
+                    ];
+                    return colors[Math.floor(Math.random() * colors.length)];
+                }
+
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+
+                    if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
+                        this.reset();
+                    }
+
+                    this.alpha += (Math.random() - 0.5) * 0.01;
+                    this.alpha = Math.max(0.1, Math.min(0.5, this.alpha));
+                }
+
+                draw() {
+                    ctx.beginPath();
+                    const gradient = ctx.createRadialGradient(
+                        this.x, this.y, 0,
+                        this.x, this.y, 100
+                    );
+                    gradient.addColorStop(0, `rgba(${this.color[0]}, ${this.color[1]}, ${this.color[2]}, ${this.alpha})`);
+                    gradient.addColorStop(1, 'rgba(15, 10, 40, 0)');
+                    ctx.fillStyle = gradient;
+                    ctx.arc(this.x, this.y, 100, 0, Math.PI * 2);
+                    ctx.fill();
+                }
             }
 
-            draw() {
-                ctx.beginPath();
-                const gradient = ctx.createRadialGradient(
-                    this.x, this.y, 0,
-                    this.x, this.y, 100
-                );
-                gradient.addColorStop(0, `rgba(${this.color[0]}, ${this.color[1]}, ${this.color[2]}, ${this.alpha})`);
-                gradient.addColorStop(1, 'rgba(15, 10, 40, 0)');
-                ctx.fillStyle = gradient;
-                ctx.arc(this.x, this.y, 100, 0, Math.PI * 2);
-                ctx.fill();
+            function createParticles() {
+                particles = [];
+                for (let i = 0; i < 20; i++) {
+                    particles.push(new Particle());
+                }
             }
-        }
 
-        function createParticles() {
-            particles = [];
-            for (let i = 0; i < 20; i++) {
-                particles.push(new Particle());
+            function animate() {
+                ctx.fillStyle = 'rgba(15, 10, 40, 0.1)';
+                ctx.fillRect(0, 0, width, height);
+
+                particles.forEach(particle => {
+                    particle.update();
+                    particle.draw();
+                });
+
+                requestAnimationFrame(animate);
             }
-        }
 
-        function animate() {
-            ctx.fillStyle = 'rgba(15, 10, 40, 0.1)';
-            ctx.fillRect(0, 0, width, height);
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+            animate();
+        });
 
-            particles.forEach(particle => {
-                particle.update();
-                particle.draw();
-            });
-
-            requestAnimationFrame(animate);
-        }
-
-        // Initialize canvas and animation
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-        animate();
-
-        // Star interaction code
+        // Star interaction
         const container = document.querySelector('.container');
         const starsContainer = document.getElementById('stars');
         const numberOfStars = 200;
