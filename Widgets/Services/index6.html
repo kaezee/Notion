@@ -14,50 +14,49 @@
         
         html, body {
             width: 600px;
-            height: 800px;
+            height: 650px;
             overflow: hidden;
-            background-color: #191919;
+            background-color: #000000;
             position: fixed;
         }
         
         @font-face {
             font-family: 'Bahnschrift';
             src: url('https://cdnjs.cloudflare.com/ajax/libs/font-bahnschrift/1.0.1/bahnschrift.woff2') format('woff2');
-            font-weight: normal;
+            font-weight: 300;
             font-style: normal;
             font-display: swap;
         }
         
         .services-container {
             width: 600px;
-            height: 800px;
-            background-color: #191919;
-            padding: 30px;
+            height: 650px;
+            background-color: #000000;
+            padding: 40px 20px;
             overflow: hidden;
             position: relative;
-            text-align: center;
         }
         
         .services-heading {
             color: #f4c80f;
             font-family: 'Poppins', sans-serif;
             font-weight: 900;
-            font-size: 20pt;
-            margin-bottom: 30px;
+            font-size: 28pt;
+            margin-bottom: 40px;
             text-align: left;
         }
         
         .services-grid {
             display: flex;
             flex-direction: column;
-            align-items: center;
+            gap: 40px;
         }
         
         .services-row {
-            display: flex;
-            justify-content: center;
             width: 100%;
-            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
         }
         
         .row-4 {
@@ -65,25 +64,18 @@
         }
         
         .row-3 {
-            justify-content: space-around;
+            justify-content: space-between;
         }
         
         .service-item {
             color: #f4c80f;
             font-family: 'Bahnschrift', 'Arial Narrow', sans-serif;
-            font-weight: 400;
-            font-size: 16pt;
+            font-weight: 300;
+            font-size: 14pt;
+            letter-spacing: 0.5px;
             text-align: center;
+            white-space: nowrap;
             animation: float 3s infinite ease-in-out;
-            position: relative;
-        }
-        
-        .row-4 .service-item {
-            width: 20%;
-        }
-        
-        .row-3 .service-item {
-            width: 30%;
         }
         
         /* Different animation delays */
@@ -97,7 +89,7 @@
                 transform: translateY(0px);
             }
             50% {
-                transform: translateY(-6px);
+                transform: translateY(-5px);
             }
             100% {
                 transform: translateY(0px);
@@ -145,7 +137,7 @@
                 <div class="service-item">Typography</div>
                 <div class="service-item">Print Design</div>
                 <div class="service-item">Website Design</div>
-                <div class="service-item">App Interface</div>
+                <div class="service-item">Gammification</div>
             </div>
         </div>
     </div>
