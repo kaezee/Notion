@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Bahnschrift';
+            src: url('https://cdnjs.cloudflare.com/ajax/libs/font-bahnschrift/1.0.1/bahnschrift.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        .services-container {
+            width: 1500px;
+            background-color: #070707;
+            padding: 60px;
+            box-sizing: border-box;
+            overflow: hidden;
+            border-radius: 0;
+            text-align: center;
+        }
+        
+        .services-heading {
+            color: #ff624d;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 900;
+            font-size: 36pt; /* Reduced from 50pt */
+            margin-bottom: 50px;
+            text-align: left; /* Changed to left alignment */
+        }
+        
+        .services-grid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .services-row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            width: 100%;
+        }
+        
+        .service-item {
+            color: #ff624d;
+            font-family: 'Bahnschrift', 'Arial Narrow', sans-serif;
+            font-weight: 400;
+            font-size: 28pt; /* Reduced from 40pt */
+            flex: 1;
+            animation: float 3s infinite ease-in-out;
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            padding: 0 15px;
+        }
+        
+        /* Different animation delays for more organic feel */
+        .service-item:nth-child(1) { animation-delay: 0s; }
+        .service-item:nth-child(2) { animation-delay: 0.3s; }
+        .service-item:nth-child(3) { animation-delay: 0.1s; }
+        .service-item:nth-child(4) { animation-delay: 0.4s; }
+        .service-item:nth-child(5) { animation-delay: 0.2s; }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+        .service-item:hover {
+            animation-play-state: paused;
+            opacity: 0.8;
+            cursor: pointer;
+        }
+        
+        /* Row-specific styling */
+        .row-5 {
+            justify-content: space-between;
+        }
+        
+        .row-4 {
+            justify-content: space-around;
+            max-width: 90%;
+        }
+    </style>
+</head>
+<body>
+    <div class="services-container">
+        <h2 class="services-heading">Services</h2>
+        
+        <div class="services-grid">
+            <!-- Row 1: 5 items -->
+            <div class="services-row row-5">
+                <div class="service-item">Graphics design</div>
+                <div class="service-item">Branding</div>
+                <div class="service-item">Logo Design</div>
+                <div class="service-item">Package Design</div>
+                <div class="service-item">Illustration</div>
+            </div>
+            
+            <!-- Row 2: 4 items -->
+            <div class="services-row row-4">
+                <div class="service-item">Character Design</div>
+                <div class="service-item">World Building</div>
+                <div class="service-item">User Research</div>
+                <div class="service-item">Ui/Ux</div>
+            </div>
+            
+            <!-- Row 3: 5 items -->
+            <div class="services-row row-5">
+                <div class="service-item">Visual Design</div>
+                <div class="service-item">Product Videos</div>
+                <div class="service-item">Marketing Designs</div>
+                <div class="service-item">Motion Graphics</div>
+                <div class="service-item">Concept Art</div>
+            </div>
+            
+            <!-- Row 4: 4 items -->
+            <div class="services-row row-4">
+                <div class="service-item">Typography</div>
+                <div class="service-item">Print Design</div>
+                <div class="service-item">Website Design</div>
+                <div class="service-item">App Interface</div>
+            </div>
+            
+            <!-- Row 5: 5 items (removed 3D Modeling) -->
+            <div class="services-row row-5">
+                <div class="service-item">Design Systems</div>
+                <div class="service-item">Animation</div>
+                <div class="service-item">Kinetic Typography</div>
+                <div class="service-item">Data Visualization</div>
+                <div class="service-item">Storyboarding</div>
+            </div>
+            
+            <!-- Row 6: 4 items -->
+            <div class="services-row row-4">
+                <div class="service-item">Game UI Design</div>
+                <div class="service-item">Gamification</div>
+                <div class="service-item">Creative Direction</div>
+                <div class="service-item">Explainer Videos</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
